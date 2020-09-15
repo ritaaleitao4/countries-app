@@ -1,6 +1,6 @@
 # Countries App - Rita Leitão
 
-Demo URL: https://countries-app.netlify.app
+Demo URL: https://countries-list-app.netlify.app/
 
 ### Project setup
 ```
