@@ -31,12 +31,12 @@
     },
     data() {
       return {
-        visibleItems: 25,
+        visibleItems: 20,
       }
     },
     methods: {
       viewMore() {
-        this.visibleItems = this.visibleItems + 25
+        this.visibleItems = this.visibleItems + 20
       },
     },
   }
