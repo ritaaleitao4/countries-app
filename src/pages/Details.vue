@@ -35,7 +35,7 @@
           </li>
           <li>
             Capital:
-            <p>{{country.capital}}</p>
+            <p>{{country.capital ? country.capital : '-'}}</p>
           </li>
           <li>
             Region:
