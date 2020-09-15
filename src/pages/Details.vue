@@ -2,7 +2,8 @@
   <div class="container">
     <div>
       <button @click="$router.push({name: 'homepage'})">
-        &#x3c; go back
+        <goBackSvg/>
+        go back
       </button>
 
       <div class="details-content" v-if="country">
@@ -13,12 +14,14 @@
 
           <template v-if="country.borders.length">
             <p>Borders:</p>
-            <button
-              v-for="(border, index) in country.borders"
-              :key="index"
-              @click="showNewCountry(border)">
-                {{border}}
-            </button>
+            <div class="borders">
+              <button
+                v-for="(border, index) in country.borders"
+                :key="index"
+                @click="showNewCountry(border)">
+                  {{border}}
+              </button>
+            </div>
           </template>
         </div>
         <ul>
@@ -29,6 +32,10 @@
           <li>
             Native name:
             <p>{{country.nativeName}}</p>
+          </li>
+          <li>
+            Capital:
+            <p>{{country.capital}}</p>
           </li>
           <li>
             Region:
@@ -62,9 +69,13 @@
 
 <script>
   import { mapActions, mapState } from 'vuex'
+  import goBackSvg from '@assets/images/view.svg'
 
   export default {
     name: 'details',
+    components: {
+      goBackSvg,
+    },
     data() {
       return {
         country: null,
@@ -109,6 +120,14 @@
         font-size: 16px;
         color: $color-header-title;
         margin-bottom: $default-margin;
+        display: flex;
+        align-items: center;
+
+        svg {
+          transform: rotate(-180deg);
+          height: 15px;
+          margin-right: $default-margin/2;
+        }
       }
 
       .details-content {
@@ -116,27 +135,53 @@
         position: relative;
         justify-content: flex-start;
 
+        @media only screen and (max-width: 800px) {
+          flex-direction: column-reverse;
+        }
+
         > div {
           img {
-            max-height: 207px;
+            max-height: 235px;
             height: 100%;
             width: auto;
+            margin-bottom: $default-margin/2;
+
+            @media only screen and (max-width: 800px) {
+              width: 100%;
+              height: auto;
+              max-height: unset;
+              max-width: 400px;
+            }
           }
 
           p {
             @include list-text;
           }
 
-          button {
-            @include list-title;
-            margin: 0;
-            display: block;
-            cursor: pointer;
+          .borders {
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 360px;
+
+            button {
+              @include list-title;
+              margin: $default-margin/3;
+              padding: $default-padding/3 $default-padding;
+              box-shadow: 0 3px 15px 4px rgba(68,68,68,0.16);
+              border-radius: 4px;
+              display: block;
+              cursor: pointer;
+            }
           }
         }
 
         ul {
           margin-left: $default-margin;
+
+          @media only screen and (max-width: 800px) {
+            margin-left: 0;
+            margin-bottom: $default-margin;
+          }
 
           li {
             display: flex;

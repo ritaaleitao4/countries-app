@@ -2,6 +2,9 @@
   <div
     class="list-item"
     @click="$router.push({name: 'details', params: {id: item.alpha3Code}})">
+    <img
+      :src="item.flag"
+      :alt="item.name + '-flag'"/>
     <h3>{{item.name}}</h3>
     <seeMoreSvg/>
   </div>
@@ -29,18 +32,23 @@
     width: 100%;
     display: flex;
     flex-flow: row nowrap;
+    align-items: center;
     padding: $default-padding;
     cursor: pointer;
 
+    img {
+      max-height: 30px;
+      margin-right: $default-margin/2;
+    }
     h3 {
       @include list-title;
     }
 
     svg {
       display: block;
-      width: 16px;
+      width: 12px;
       height: auto;
-      margin-left: 8px;
+      margin-left: $default-margin/2;
       fill: $color-list-title;
     }
   }

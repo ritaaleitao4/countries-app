@@ -56,7 +56,7 @@
     },
     created() {
       this.countries = this.countriesData
-      this.regions = ['All regions', ...new Set(this.countriesData.map((item) => item.region))]
+      this.regions = ['All regions', ...new Set(this.countriesData.map((item) => item.region))].filter((n) => n)
     },
   }
 </script>
@@ -84,7 +84,7 @@
         input, select{
           max-width: 200px;
           font-weight: 400;
-          border-radius: 6px;
+          border-radius: 4px;
           padding: $default-padding/2 $default-padding ;
           color: $color-list-title;
           background-color: $color-white;
